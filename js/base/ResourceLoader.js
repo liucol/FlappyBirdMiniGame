@@ -17,13 +17,19 @@ export class ResourceLoader {
     onLoaded(callback) {
         let loadedCount = 0;
         for (let value of this.map.values()) {
-            value.onLoaded = () => {
+            value.onload = () => {
                 loadedCount++;
                 if (loadedCount >= this.map.size) {
-                    callback(this.map)
+                    //图片加载完成调用回调函数 并传入图片资源对象
+                    callback(this.map);
                 }
             }
         }
+    }
 
+
+    //创建一个静态工厂
+    static create() {
+        return new ResourceLoader();
     }
 }
