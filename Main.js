@@ -10,7 +10,24 @@ export class Main {
         loader.onLoaded(map => this.onResourceFirstLoaded(map));
 
         //不管调用多少次  只会执行一次getInstance这个函数  这个是es6的单列模式
-        Director.getInstance();
+        //Director.getInstance();
+
+        let image = new Image();
+        image.src = "../res/background.png";
+        image.onload = () => {
+            this.ctx.drawImage(
+                image,
+                0,
+                0,
+                image.width,
+                image.height,
+                0,
+                0,
+                image.width,
+                image.height
+            )
+        }
+
     }
 
     onResourceFirstLoaded(map) {
